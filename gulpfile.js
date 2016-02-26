@@ -1,6 +1,5 @@
 var gulp = require("gulp");
 var gls = require('gulp-live-server');
-var cache = require('gulp-cached');
 var server = gls.new("server.js");
 
 
@@ -17,7 +16,6 @@ gulp.task("server", function () {
 
 gulp.task("watch", function () {
 	gulp.watch("**/**/*.js", function (file) {
-		console.log("CHANGE");
 		server.notify.apply(server, [file]);
 	})
 })
