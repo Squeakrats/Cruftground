@@ -10,8 +10,11 @@
 		    	cruft : "CruftEngine/cruft"
 		    }
 		  });
+
+		var file = (window.location.href.split("?type=")[1] || "client") + ".js";
 		System.defaultJSExtensions = true;
-  		System.import('main.js');
+  		System.import(file);
+  		console.log(file)
 	</script> 
 </head>
 <body>
