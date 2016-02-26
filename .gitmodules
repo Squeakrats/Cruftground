@@ -1,0 +1,3 @@
+[submodule "CruftEngine"]
+	path = CruftEngine
+	url = https://github.com/mjneil/CruftEngine

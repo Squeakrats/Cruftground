@@ -1,0 +1,23 @@
+{
+  "name": "cruftground",
+  "description": "Welcome to Cruftground",
+  "main": "main.js",
+  "authors": [
+    "Yusef Sohail <yusefsohail@gmail.com>"
+  ],
+  "license": "BSD-2-Clause",
+  "homepage": "https://github.com/Squeakrats/Cruftground",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "traceur": "^0.0.102",
+    "system.js": "^0.19.23"
+  }
+}

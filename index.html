@@ -1,0 +1,19 @@
+<html>
+<head>
+	<title> Welcome to Cruftground </title>
+	<script src="bower_components/system.js/dist/system.js"></script>
+	<script>
+		System.config({
+		    transpiler: 'traceur',
+		    map : {
+		    	traceur : "bower_components/traceur/traceur.js",
+		    	cruft : "CruftEngine/cruft"
+		    }
+		  });
+		System.defaultJSExtensions = true;
+  		System.import('main.js');
+	</script> 
+</head>
+<body>
+</body>
+</html>

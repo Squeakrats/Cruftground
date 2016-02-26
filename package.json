@@ -1,0 +1,23 @@
+{
+  "name": "cruftground",
+  "version": "0.0.0",
+  "description": "Welcome to Cruftground",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Squeakrats/Cruftground"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/Squeakrats/Cruftground/issues"
+  },
+  "dependencies": {
+    "gulp-cached": "~1.1.0",
+    "gulp-live-server": "0.0.29",
+    "gulp": "~3.9.1"
+  }
+}
