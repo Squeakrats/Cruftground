@@ -11,11 +11,11 @@ var onerror = function (e) {
 }
 
 gulp.task("server", function () {
-    var server = gls.static("cruft/../", 8888);
+    server = gls.static("cruft/../", 8888);
     server.start();
 })
 
 //echo fs.inotify.max_user_watches=582222 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 gulp.task("default", ["server"], function () {
-   
+	
 })
