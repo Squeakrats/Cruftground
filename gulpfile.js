@@ -15,7 +15,7 @@ gulp.task("server", function () {
 })
 
 gulp.task("watch", function () {
-	gulp.watch("**/**/*.js", function (file) {
+	gulp.watch("**/**/*.js", function (file) {//why is this not recursively globbing.
 		server.notify.apply(server, [file]);
 	})
 })
