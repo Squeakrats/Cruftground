@@ -58,14 +58,14 @@ export default class PlayerController extends Component {//todo only send difs >
 		}
 
 		if(Object.keys(events).length) { 
-			this.emit("PlayerController:events", events);
+			this.emit("events", events);
 			this.last = JSON.parse(JSON.stringify(this.keyStates)); //stringifying is never the answer. 
 		}
 
-		//this.emit("PlayerController:mouse", engine.camera.mouseToWorld(this.mouse) ) ;
+		this.emit("mouse", engine.camera.mouseToWorld(this.mouse) ) ;
 		if(this.fire){
 			this.fire = false;
-			this.emit("PlayerController:events", {FIRE : true});
+			this.emit("events", {FIRE : true});
 		}
 
 		

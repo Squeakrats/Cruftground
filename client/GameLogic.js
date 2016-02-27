@@ -1,9 +1,6 @@
 import Component from "cruft/core/Component"
-import engine, {instantiate} from "cruft/engine";
-//import Camera2D from "engine/graphics/Camera2D"
-//import Interval from "engine/processes/Interval";
-//import Actor from "engine/core/Actor";
-//import memory from "engine/memory"
+import engine, {instantiate, memory} from "cruft/engine";
+import Camera2D from "cruft/graphics/Camera2D"
 
 export default class GameLogic extends Component {
 	constructor() {
@@ -11,43 +8,26 @@ export default class GameLogic extends Component {
 	}
 
 	initialize() {
-		//console.log(engine.scene)
-		
-		//engine.scene.camera = new Camera2D(window.innerWidth, window.innerHeight);
-		//engine.camera = 
-		//scene.addChild(engine.camera);
+		engine.camera = new Camera2D(window.innerWidth, window.innerHeight); //@TODO I hate this class. 
+		engine.scene.addChild(engine.camera); //domactor? hmm
 
 		var player = instantiate("Player");
 		engine.scene.addChild(player);
 
 
+		//route commands through game (basically just so I can do this networking style later)
+		var pptr = memory.ptr(player);
+		var controller = player.getComponent("PlayerController"); 
 
-		/*
+		controller.on("events", (events) => {
+			var player = pptr.get();
+			if(player) player.getComponent("PlayerLogic").handleEvents(events); //dis is why I want caching of components not just actors. 
+		});
 
-
-		var actor = player.get();
-		scene.addChild(actor);
-
-		this.playerLogic = actor.getComponent("PlayerLogic").toPointer();
-		this.playerTransform = actor.getComponent("transform").toPointer();
-
-		engine.on("PlayerController:events", (events) => {
-			var logic = this.playerLogic.get();
-			if(logic) {
-				logic.handleEvents(events);
-			}
-		})
-
-		engine.on("PlayerController:mouse", (events) => {
-			var logic = this.playerLogic.get();
-			if(logic) {
-				logic.handleMouse(events);
-			}
-		})*/
-
-
-
-
+		controller.on("mouse", (mouse) => {
+			var player = pptr.get();
+			if(player) player.getComponent("PlayerLogic").handleMouse(mouse); //dis is why I want caching of components not just actors. 
+		});
 
 	}
 }

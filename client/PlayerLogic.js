@@ -14,14 +14,19 @@ export default class PlayerLogic extends Component {
 		this.target = [1, 0];
 		this.speed = .7;
 		this.fire = false;
+		this.actorTransform = null;
 
+	}
+
+	initialize() {
+		this.actorTransform = this.actor.getComponent("Transform2D");
 	}
 
 	update(now, deltaMs) {
 
 		var actor = this.actor;
 
-		var transform = actor.getComponent("Transform2D");
+		var transform = this.actorTransform;
 		var position = transform.position;
 		var speed = this.speed;
 		//Input.axis("Horizontal") do somthing like that maybe? so we can do xbox controllers and stuff too. 
