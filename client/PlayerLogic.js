@@ -1,5 +1,5 @@
 import Component from "cruft/core/Component";
-import {vec2} from "cruft/lib/gl-matrix"
+import {vec2} from "cruft/math/math"
 
 export default class PlayerLogic extends Component {
 
@@ -11,7 +11,7 @@ export default class PlayerLogic extends Component {
 		this.movingUp = false;
 		this.movingDown = false;
 
-		this.target = [1, 0];
+		this.target = new vec2(1, 0);
 		this.speed = .7;
 		this.fire = false;
 		this.actorTransform = null;
@@ -31,29 +31,25 @@ export default class PlayerLogic extends Component {
 		var speed = this.speed;
 		//Input.axis("Horizontal") do somthing like that maybe? so we can do xbox controllers and stuff too. 
 		if(this.movingLeft) {
-			position[0] -= speed * deltaMs
+			position.x -= speed * deltaMs
 		}
 
 		if(this.movingRight) {
-			position[0] += speed * deltaMs
+			position.x += speed * deltaMs
 		}
 
 		if(this.movingUp) {
-			position[1] += speed * deltaMs
+			position.y += speed * deltaMs
 		}
 
 		if(this.movingDown) {
-			position[1] -= speed * deltaMs
+			position.y -= speed * deltaMs
 		}
 
 		transform.position = position;
 
 		var world = this.actor.getComponent("Transform2D").getWorldPosition();
-		var dif = vec2.create();
-
-		vec2.sub(dif, this.target, position);
-		transform.setDirection(dif); 
-
+		transform.setDirection(vec2.sub(this.target, world));
 
 		if(this.fire) {
 			this.fire = false;
