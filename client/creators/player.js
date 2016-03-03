@@ -2,20 +2,13 @@ import Actor from "cruft/core/Actor";
 import Transform2D from "cruft/core/components/Transform2D";
 import PlayerLogic from "../PlayerLogic";
 import PlayerController from "../PlayerController";
-import Render from "cruft/graphics/components/Render";
-import Sprite from "cruft/graphics/renderables/Sprite";
+import Sprite from "cruft/graphics/components/Sprite";
 
 export default () => {
-
-	var render = new Render();
-		render.renderable = new Sprite("image!assets/images/player.png", 100, 100);
-
-
 	var actor = new Actor();
 		actor.addComponent(new Transform2D());
 		actor.addComponent(new PlayerLogic());
 		actor.addComponent(new PlayerController());
-		actor.addComponent(render);
-
+		actor.addComponent(new Sprite("image!assets/images/player.png", 100, 100));
 	return actor;
 }

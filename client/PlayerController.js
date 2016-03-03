@@ -6,6 +6,7 @@ export default class PlayerController extends Component {//todo only send difs >
 
 	constructor() {
 		super();
+		this.type = "PlayerController";
 
 		this.keyStates = {};
 		this.last = {};

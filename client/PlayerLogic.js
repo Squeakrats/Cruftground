@@ -5,6 +5,7 @@ export default class PlayerLogic extends Component {
 
 	constructor() {
 		super();
+		this.type = "PlayerLogic";
 
 		this.movingLeft = false;
 		this.movingRight = false;
@@ -19,7 +20,7 @@ export default class PlayerLogic extends Component {
 	}
 
 	initialize() {
-		this.actorTransform = this.actor.getComponent("Transform2D");
+		this.actorTransform = this.actor.getComponent("transform");
 	}
 
 	update(now, deltaMs) {
@@ -48,7 +49,7 @@ export default class PlayerLogic extends Component {
 
 		transform.position = position;
 
-		var world = this.actor.getComponent("Transform2D").getWorldPosition();
+		var world = this.actor.getComponent("transform").getWorldPosition();
 		transform.setDirection(vec2.sub(this.target, world));
 
 		if(this.fire) {

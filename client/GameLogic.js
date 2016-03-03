@@ -5,6 +5,7 @@ import Camera2D from "cruft/graphics/Camera2D"
 export default class GameLogic extends Component {
 	constructor() {
 		super();
+		this.type = "GameLogic";
 	}
 
 	initialize() {
