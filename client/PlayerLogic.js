@@ -3,7 +3,7 @@ import {vec2} from "cruft/math/math"
 
 export default class PlayerLogic extends Component {
 
-	constructor() {
+	constructor(controller) {
 		super();
 		this.type = "PlayerLogic";
 
@@ -16,35 +16,29 @@ export default class PlayerLogic extends Component {
 		this.speed = .7;
 		this.fire = false;
 		this.actorTransform = null;
-		this.controller = null;
+		this.controller = controller;
 
 	}
 
 	initialize() {
 		this.actorTransform = this.actor.getComponent("transform");
-
-		/*
-		this.controller.on("mousedown", () => {
-
-		})*/
-
-
 	}
 
-	update(now, deltaMs) {/*
+	update(now, deltaMs) {
 
 		var controller = this.controller;
 		var transform = this.actorTransform;
 		var position = transform.position;
 		var speed = this.speed;
 
+		var displacement = new vec2( controller.getAxis("horizontal"), -controller.getAxis("vertical") );
+		if(displacement.length() > .5){
+			displacement
+				.normalize()
+				.scale(speed * deltaMs);
 
-		var displacement = (new vec2( controller.axes.moveX, controller.axes.moveY ))
-			.normalize()
-			.scale(speed * deltaMs) 
-
-
-		transform.position = position.add(displacement);*/
+			transform.position = position.add(displacement);
+		}
 
 	}
 

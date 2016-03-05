@@ -13,9 +13,14 @@ export default class GameView extends View {
 		this.renderer = new Renderer({ canvas : this.canvas })
 		this.renderer.register(new SpriteRenderer());
 		this.camera = instantiate("Camera", {width : width, height : height});
+
+		this.renderFunc = this.render.bind(this);
+		this.renderFunc();
 	}
 
-	update() {
+	render() {
 		this.renderer.render(engine.scene, this.camera);
+		requestAnimationFrame(this.renderFunc)
 	}
 }
+//Window.requestAnimationFrame() - Web APIs | MDN
