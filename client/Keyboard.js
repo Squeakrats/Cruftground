@@ -1,3 +1,49 @@
+import Controller from "cruft/core/Controller.js";
+
+export default class MouseKeyboard extends Controller {
+
+	constructor() {
+
+		this.isMouseDown = false;
+		this.mouse = new vec2(0, 0);
+
+
+
+
+
+		this.keyStates = {};
+
+		
+
+		addEventListener("keydown", (e) => {//ew
+			this.keyStates[String.fromCharCode(e.which)] = true;
+		})
+
+		addEventListener("keyup", (e) => {
+			this.keyStates[String.fromCharCode(e.which)] = false;
+		})
+
+		addEventListener("mousemove", (e) => {//temp camera logic in here. Need a refereance frame for things like. Camera.domToWorld() etc. 
+			this.mouse.x = e.pageX; //(e.pageX - window.innerWidth/2);
+			this.mouse.y = e.pageY; //(window.innerHeight - e.pageY - window.innerHeight/2);
+		})
+
+		addEventListener("mousedown", (e) => {//temp camera logic in here. Need a refereance frame for things like. Camera.domToWorld() etc. 
+			this.isMouseDown = true;
+		})
+
+		addEventListener("mouseup", (e) => {//temp camera logic in here. Need a refereance frame for things like. Camera.domToWorld() etc. 
+			this.isMouseDown = false;
+		})
+	}
+
+	update() {
+
+	}
+}
+
+/*
+
 import Component from "cruft/core/Component";
 import {vec2} from "cruft/math/math"
 import engine from "cruft/engine"
@@ -76,3 +122,4 @@ export default class PlayerController extends Component {//todo only send difs >
 		
 	}
 }
+

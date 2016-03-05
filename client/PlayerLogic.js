@@ -16,45 +16,35 @@ export default class PlayerLogic extends Component {
 		this.speed = .7;
 		this.fire = false;
 		this.actorTransform = null;
+		this.controller = null;
 
 	}
 
 	initialize() {
 		this.actorTransform = this.actor.getComponent("transform");
+
+		/*
+		this.controller.on("mousedown", () => {
+
+		})*/
+
+
 	}
 
-	update(now, deltaMs) {
+	update(now, deltaMs) {/*
 
-		var actor = this.actor;
-
+		var controller = this.controller;
 		var transform = this.actorTransform;
 		var position = transform.position;
 		var speed = this.speed;
-		//Input.axis("Horizontal") do somthing like that maybe? so we can do xbox controllers and stuff too. 
-		if(this.movingLeft) {
-			position.x -= speed * deltaMs
-		}
 
-		if(this.movingRight) {
-			position.x += speed * deltaMs
-		}
 
-		if(this.movingUp) {
-			position.y += speed * deltaMs
-		}
+		var displacement = (new vec2( controller.axes.moveX, controller.axes.moveY ))
+			.normalize()
+			.scale(speed * deltaMs) 
 
-		if(this.movingDown) {
-			position.y -= speed * deltaMs
-		}
 
-		transform.position = position;
-
-		var world = this.actor.getComponent("transform").getWorldPosition();
-		transform.setDirection(vec2.sub(this.target, world));
-
-		if(this.fire) {
-			this.fire = false;
-		}
+		transform.position = position.add(displacement);*/
 
 	}
 
