@@ -1,24 +1,44 @@
-import engine, {instantiate, factory, cache, input} from "cruft/engine";
-import * as creators from "./client/creators/creators";
-import ObjLoader from "cruft/net/loaders/obj";
-import GameView from "./client/GameView";
-import {vec2} from "cruft/math/math"
-import MouseKeyboard from "cruft/core/controllers/MouseKeyboard";
-import Gamepad from "cruft/core/controllers/Gamepad";
 
 
 
-//var controller = new MouseKeyboard();
-var controller = new Gamepad(1)
-input.addController(controller);
+import Object3D from "cruft/graphics/Object3D"
+import Camera from "cruft/graphics/objects/Camera"
+import Mesh from "cruft/graphics/objects/Mesh"
+import WebGLRenderer from "cruft/graphics/webgl/renderers/WebGLRenderer";
+import CubeGeometry from "cruft/graphics/geometry/CubeGeometry";
+import MeshBasicMaterial from "cruft/graphics/webgl/materials/MeshBasicMaterial"
+
+import mat4 from "cruft/math/mat4"
+import vec3 from "cruft/math/vec3"
 
 
-factory.register(creators);
-engine.setScene(instantiate("Scene"));
-engine.addView("default", new GameView(window.innerWidth, window.innerHeight));
-engine.scene.addChild(engine.views.default.camera);
-document.body.appendChild(engine.views.default.canvas);
-engine.start(17);
 
-var player = instantiate("Player", controller);
-engine.scene.addChild(player);
+
+var renderer = new WebGLRenderer({ width : 800, height : 600 });
+	document.body.appendChild(renderer.canvas);
+
+var scene = new Object3D();
+var camera = new Camera(mat4.perspective(Math.PI/2, renderer.canvas.width / renderer.canvas.height, 1, 100));
+
+var geom = new CubeGeometry(2, 2, 2);
+	geom.computeFaceNormals();
+
+var mat = new MeshBasicMaterial({ color : new vec3(0.0, 0.0, 1.0) });
+
+
+var mesh = new Mesh(geom, mat);
+	mesh.transform.position.z = -4;
+	
+
+	scene.addChild(camera);
+	scene.addChild(mesh)
+
+
+renderer.render(scene, camera)
+
+
+setInterval(function() {
+	mesh.transform.position.y = Math.sin(Date.now()/2000) * 2;
+	mesh.transform.position.x = Math.cos(Date.now()/2000) * 2;
+	renderer.render(scene, camera);
+}, 17)
